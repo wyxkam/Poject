@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mapper.TemplateMapper">
+    <delete id="delete" parameterType="int">
+        delete from prescriptiontemplate where id=#{id}
+    </delete>
+    <insert id="add" parameterType="cn.pojo.PrescriptionTemplate">
+        insert into prescriptiontemplate(number,name,type,diagnose,
+        jurisdiction,creatorid,createtime,describe) values(#{number},#{name}
+        ,#{type},#{diagnose},#{jurisdiction},#{creatorid},#{createtime},#{describe})
+    </insert>
+    <update id="update" parameterType="cn.pojo.PrescriptionTemplate">
+        update prescriptiontemplate
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+            <if test="name !=null">name=#{name},</if>
+            <if test="diagnose !=null">diagnose=#{diagnose},</if>
+            <if test="jurisdiction !=null">jurisdiction=#{jurisdiction},</if>
+            <if test="describe !=null">describe=#{describe},</if>
+        </trim>
+    </update>
+    <select id="getInfo" resultMap="info">
+        select pt.*,c.id as c_id,c.creator from prescriptiontemplate pt,creation c
+        where pt.creatorid=c.id
+        <if test="number != null and number != ''">
+            and number LIKE CONCAT ('%',#{number},'%')
+        </if>
+        <if test="name !=null and name != ''">
+            and name LIKE CONCAT ('%',#{name},'%')
+        </if>
+        <if test="type !=null and type != ''">
+            and type=#{type}
+        </if>
+        <if test="jurisdiction !=null and jurisdiction != ''">
+            and jurisdiction=#{jurisdiction}
+        </if>
+        <if test="curPageNo != null and pageSize !=null">
+            limit #{curPageNo},#{pageSize}
+        </if>
+    </select>
+    <select id="count" resultType="int">
+        select count(1) as count from prescriptiontemplate pt,creation c
+        where pt.creatorid=c.id
+        <if test="number != null and number != ''">
+            and number LIKE CONCAT ('%',#{number},'%')
+        </if>
+        <if test="name !=null and name != ''">
+            and name LIKE CONCAT ('%',#{name},'%')
+        </if>
+        <if test="type !=null and type != ''">
+            and type=#{type}
+        </if>
+        <if test="jurisdiction !=null and jurisdiction != ''">
+            and jurisdiction=#{jurisdiction}
+        </if>
+    </select>
+    <resultMap type="cn.pojo.PrescriptionTemplate" id="info">
+        <id property="id" column="id"/>
+        <result property="number" column="number"/>
+        <result property="name" column="name"/>
+        <result property="diagnose" column="diagnose"/>
+        <result property="jurisdiction" column="jurisdiction"/>
+        <result property="creatorid" column="creatorid"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="describe" column="describe"/>
+        <result property="type" column="type"/>
+        <association property="creation" javaType="cn.pojo.Creation">
+            <id property="id" column="c_id"/>
+            <result property="creator" column="creator"/>
+        </association>
+    </resultMap>
+</mapper>

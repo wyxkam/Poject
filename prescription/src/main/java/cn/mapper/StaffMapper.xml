@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper>
+    <select id="getInfo" resultMap="info">
+        select s.*,d.id as d_id,d.name as d_name,c.id as c_id,c.creator,
+        r.id as r_id,r.name as r_name from staff s,departments d,creation c,role r
+        where s.creatorid=c.id and s.departmentsid=d.id and s.roleid=r.id
+        <if test="name !=null and name != ''">
+            and name LIKE CONCAT ('%',#{name},'%')
+        </if>
+        <if test="departmentsName !=null and departmentsName != ''">
+            and d.name=#{departmentsName}
+        </if>
+        <if test="curPageNo != null and pageSize !=null">
+            limit #{curPageNo},#{pageSize}
+        </if>
+    </select>
+    <select id="count" resultType="int">
+        select count(1) as count from staff s,departments d,creation c,role r
+        where s.creatorid=c.id and s.departmentsid=d.id and s.roleid=r.id
+        <if test="name !=null and name != ''">
+            and name LIKE CONCAT ('%',#{name},'%')
+        </if>
+        <if test="departmentsName !=null and departmentsName != ''">
+            and d.name=#{departmentsName}
+        </if>
+    </select>
+    <resultMap id="info" type="cn.pojo.Staff">
+        <id property="id" column="id"/>
+        <result property="number" column="number"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="address" column="address"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="toclinic" column="toclinic"/>
+        <result property="position" column="position"/>
+        <result property="status" column="status"/>
+        <result property="createtime" column="createtime"/>
+        <result property="updatetime" column="updatetime"/>
+        <association property="creation" javaType="cn.pojo.Creation">
+            <id property="id" column="c_id"/>
+            <result property="creator" column="creator"/>
+        </association>
+        <association property="departments" javaType="cn.pojo.Departments">
+            <id property="id" column="d_id"/>
+            <result property="name" column="d_name"/>
+        </association>
+        <association property="role" javaType="cn.pojo.Role">
+            <id property="id" column="r_id"/>
+            <result property="name" column="r_name"/>
+        </association>
+    </resultMap>
+</mapper>

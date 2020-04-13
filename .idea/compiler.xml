@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="oauth-resource" />
+        <module name="oauth-login" />
+        <module name="login" />
+        <module name="sso-oauth-client2" />
+        <module name="medicine" />
+        <module name="sso-oauth-client" />
+        <module name="prescription" />
+        <module name="basic" />
+        <module name="oauth-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
