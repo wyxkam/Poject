@@ -1,9 +1,7 @@
 package cn.service;
 
-import cn.mapper.CreationMapper;
 import cn.mapper.DetailMapper;
 import cn.mapper.TemplateMapper;
-import cn.pojo.Creation;
 import cn.pojo.Page;
 import cn.pojo.PrescriptionDetail;
 import cn.pojo.PrescriptionTemplate;
@@ -16,9 +14,6 @@ import java.util.List;
 public class TemplateService {
     @Resource
     private TemplateMapper templateMapper;
-
-    @Resource
-    private CreationMapper creationMapper;
 
     @Resource
     private DetailMapper detailMapper;
@@ -37,8 +32,9 @@ public class TemplateService {
     }
 
     public int add(PrescriptionTemplate prescriptionTemplate,String name) {
-        Creation creation=creationMapper.getInfo(null,name);
-        prescriptionTemplate.setCreatorId(creation.getId());
+        StaffService staffService=new StaffService();
+        Integer id=staffService.getById(name);
+        prescriptionTemplate.setStaffid(id);
         return templateMapper.add(prescriptionTemplate);
     }
 

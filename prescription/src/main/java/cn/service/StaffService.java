@@ -19,4 +19,8 @@ public class StaffService {
         page.setStaffList(staffMapper.getInfo(name, departmentsName, (curPageNo - 1) * pageSize, pageSize));
         return page;
     }
+
+    public int getById(String name) {
+        return staffMapper.getById(name);
+    }
 }

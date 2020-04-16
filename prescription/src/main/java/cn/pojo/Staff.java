@@ -19,13 +19,21 @@ public class Staff {
     private Integer departmentsid;//所属科室ID
     private Integer roleid;//角色ID
     private String password;//密码
-    private Integer creatorid;//创建人ID
-    private Integer status;//员工状态 启用/停用 1/0
+//    private Integer staffid;//创建人ID
+    private String status;//员工状态 启用/停用
     private Date createtime;//创建时间
     private Date updatetime;//更新时间
     private Departments departments;
     private Role role;
-    private Creation creation;
+    private Staff staff;//员工类
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
 
     public Departments getDepartments() {
         return departments;
@@ -41,14 +49,6 @@ public class Staff {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public Creation getCreation() {
-        return creation;
-    }
-
-    public void setCreation(Creation creation) {
-        this.creation = creation;
     }
 
     public Integer getId() {
@@ -155,24 +155,19 @@ public class Staff {
         this.password = password;
     }
 
-    public Integer getCreatorid() {
-        return creatorid;
-    }
-
-    public void setCreatorid(Integer creatorid) {
-        this.creatorid = creatorid;
-    }
+//    public Integer getCreatorid() {
+//        return creatorid;
+//    }
+//
+//    public void setCreatorid(Integer creatorid) {
+//        this.creatorid = creatorid;
+//    }
 
     public String getStatus() {
-        if (this.status == 0) {
-            return "停用";
-        }else if(this.status == 1){
-            return "启用";
-        }
-        return "";
+        return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

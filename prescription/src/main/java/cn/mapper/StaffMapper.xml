@@ -3,12 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper>
+    <select id="getById" resultType="int">
+        select id from staff where name=#{name}
+    </select>
     <select id="getInfo" resultMap="info">
-        select s.*,d.id as d_id,d.name as d_name,c.id as c_id,c.creator,
-        r.id as r_id,r.name as r_name from staff s,departments d,creation c,role r
-        where s.creatorid=c.id and s.departmentsid=d.id and s.roleid=r.id
+        select s.*,d.id as d_id,d.name as d_name,r.id as r_id,
+        r.name as r_name from staff s,departments d,role r
+        where s.departmentsid=d.id and s.roleid=r.id
         <if test="name !=null and name != ''">
-            and name LIKE CONCAT ('%',#{name},'%')
+            and s.name LIKE CONCAT ('%',#{name},'%')
         </if>
         <if test="departmentsName !=null and departmentsName != ''">
             and d.name=#{departmentsName}
@@ -18,10 +21,10 @@
         </if>
     </select>
     <select id="count" resultType="int">
-        select count(1) as count from staff s,departments d,creation c,role r
-        where s.creatorid=c.id and s.departmentsid=d.id and s.roleid=r.id
+        select count(1) as count from staff s,departments d,role r
+        where s.departmentsid=d.id and s.roleid=r.id
         <if test="name !=null and name != ''">
-            and name LIKE CONCAT ('%',#{name},'%')
+            and s.name LIKE CONCAT ('%',#{name},'%')
         </if>
         <if test="departmentsName !=null and departmentsName != ''">
             and d.name=#{departmentsName}
@@ -40,10 +43,6 @@
         <result property="status" column="status"/>
         <result property="createtime" column="createtime"/>
         <result property="updatetime" column="updatetime"/>
-        <association property="creation" javaType="cn.pojo.Creation">
-            <id property="id" column="c_id"/>
-            <result property="creator" column="creator"/>
-        </association>
         <association property="departments" javaType="cn.pojo.Departments">
             <id property="id" column="d_id"/>
             <result property="name" column="d_name"/>

@@ -8,8 +8,8 @@
     </delete>
     <insert id="add" parameterType="cn.pojo.PrescriptionTemplate">
         insert into prescriptiontemplate(number,name,type,diagnose,
-        jurisdiction,creatorid,createtime,describe) values(#{number},#{name}
-        ,#{type},#{diagnose},#{jurisdiction},#{creatorid},#{createtime},#{describe})
+        jurisdiction,staffid,createtime,describe) values(#{number},#{name}
+        ,#{type},#{diagnose},#{jurisdiction},#{staffid},#{createtime},#{describe})
     </insert>
     <update id="update" parameterType="cn.pojo.PrescriptionTemplate">
         update prescriptiontemplate
@@ -21,38 +21,38 @@
         </trim>
     </update>
     <select id="getInfo" resultMap="info">
-        select pt.*,c.id as c_id,c.creator from prescriptiontemplate pt,creation c
-        where pt.creatorid=c.id
+        select pt.*,s.id as s_id,s.name as s_name from prescriptiontemplate pt
+        ,staff s where pt.staffid=s.id
         <if test="number != null and number != ''">
-            and number LIKE CONCAT ('%',#{number},'%')
+            and pt.number LIKE CONCAT ('%',#{number},'%')
         </if>
         <if test="name !=null and name != ''">
-            and name LIKE CONCAT ('%',#{name},'%')
+            and pt.name LIKE CONCAT ('%',#{name},'%')
         </if>
         <if test="type !=null and type != ''">
-            and type=#{type}
+            and pt.type=#{type}
         </if>
         <if test="jurisdiction !=null and jurisdiction != ''">
-            and jurisdiction=#{jurisdiction}
+            and pt.jurisdiction=#{jurisdiction}
         </if>
         <if test="curPageNo != null and pageSize !=null">
             limit #{curPageNo},#{pageSize}
         </if>
     </select>
     <select id="count" resultType="int">
-        select count(1) as count from prescriptiontemplate pt,creation c
-        where pt.creatorid=c.id
+        select count(1) as count from prescriptiontemplate pt
+        ,staff s where pt.staffid=s.id
         <if test="number != null and number != ''">
-            and number LIKE CONCAT ('%',#{number},'%')
+            and pt.number LIKE CONCAT ('%',#{number},'%')
         </if>
         <if test="name !=null and name != ''">
-            and name LIKE CONCAT ('%',#{name},'%')
+            and pt.name LIKE CONCAT ('%',#{name},'%')
         </if>
         <if test="type !=null and type != ''">
-            and type=#{type}
+            and pt.type=#{type}
         </if>
         <if test="jurisdiction !=null and jurisdiction != ''">
-            and jurisdiction=#{jurisdiction}
+            and pt.jurisdiction=#{jurisdiction}
         </if>
     </select>
     <resultMap type="cn.pojo.PrescriptionTemplate" id="info">
@@ -61,13 +61,13 @@
         <result property="name" column="name"/>
         <result property="diagnose" column="diagnose"/>
         <result property="jurisdiction" column="jurisdiction"/>
-        <result property="creatorid" column="creatorid"/>
+        <result property="staffid" column="staffid"/>
         <result property="updatetime" column="updatetime"/>
         <result property="describe" column="describe"/>
         <result property="type" column="type"/>
-        <association property="creation" javaType="cn.pojo.Creation">
-            <id property="id" column="c_id"/>
-            <result property="creator" column="creator"/>
+        <association property="staff" javaType="cn.pojo.Staff">
+            <id property="id" column="s_id"/>
+            <result property="name" column="s_name"/>
         </association>
     </resultMap>
 </mapper>

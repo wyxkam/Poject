@@ -9,15 +9,16 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>login</module>
-        <module>oauth-server</module>
-        <module>oauth-resource</module>
-        <module>oauth-login</module>
+        <module>clinic-login</module>
+        <module>clinic-oauth-server</module>
+        <module>clinic-oauth-resource</module>
+        <module>clinic-oauth-login</module>
         <module>prescription</module>
         <module>sso-oauth-client</module>
         <module>medicine</module>
-        <module>basic</module>
+        <module>clinic-basic</module>
         <module>sso-oauth-client2</module>
+        <module>clinic-parent</module>
     </modules>
     <properties>
         <!-- 文件拷贝时的编码 -->

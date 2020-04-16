@@ -14,17 +14,17 @@ public class PrescriptionTemplate {
     private String jurisdiction;//模板权限
     private Date createtime;//创建时间
     private Date updatetime;//更新时间
-    private Integer creatorId;//创建人ID
+    private Integer staffid;//创建人ID
     private String describe;//处方描述
 
-    private Creation creation;//创建类
+    private Staff staff;//员工类
 
-    public Creation getCreation() {
-        return creation;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setCreation(Creation creation) {
-        this.creation = creation;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     public PrescriptionTemplate(String number, String name, String type, String diagnose
@@ -113,11 +113,11 @@ public class PrescriptionTemplate {
         this.updatetime = updatetime;
     }
 
-    public Integer getCreatorId() {
-        return creatorId;
+    public Integer getStaffid() {
+        return staffid;
     }
 
-    public void setCreatorId(Integer creatorId) {
-        this.creatorId = creatorId;
+    public void setStaffid(Integer staffid) {
+        this.staffid = staffid;
     }
 }

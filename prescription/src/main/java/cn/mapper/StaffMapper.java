@@ -12,4 +12,6 @@ public interface StaffMapper {
     List<Staff> getInfo(String name,String departmentsName,Integer curPageNo,Integer pageSize);
 
     int count(String name,String departmentsName);
+
+    int getById(String name);
 }

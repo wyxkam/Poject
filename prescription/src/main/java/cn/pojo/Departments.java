@@ -10,8 +10,8 @@ public class Departments {
     private Integer number;//科室编号
     private String name;//科室名称
     private String intro;//科室简介
-    private Integer creatorid;//创建人ID
-    private Integer status;//科室状态 启用/停用 1/0
+    private Integer staffid;//创建人ID
+    private String status;//科室状态 启用/停用 1/0
     private Date createtime;//创建时间
     private Date updatetime;//更新时间
 
@@ -47,24 +47,19 @@ public class Departments {
         this.intro = intro;
     }
 
-    public Integer getCreatorid() {
-        return creatorid;
+    public Integer getStaffid() {
+        return staffid;
     }
 
-    public void setCreatorid(Integer creatorid) {
-        this.creatorid = creatorid;
+    public void setStaffid(Integer staffid) {
+        this.staffid = staffid;
     }
 
     public String getStatus() {
-        if (this.status == 0) {
-            return "停用";
-        }else if(this.status == 1){
-            return "启用";
-        }
-        return "";
+        return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

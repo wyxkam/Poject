@@ -2,12 +2,13 @@
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/basic" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/login" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/clinic-basic" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/clinic-login" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/clinic-oauth-login" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/clinic-oauth-resource" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/clinic-oauth-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/clinic-parent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/medicine" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/oauth-login" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/oauth-resource" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/oauth-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/prescription" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sso-oauth-client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sso-oauth-client2" charset="UTF-8" />
